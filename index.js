@@ -180,9 +180,18 @@ function groupByFile(comments) {
     groups[path].docs.push(c);
   });
 
-  var files = Object.keys(groups).map(function (p) {
+  var files = Object.keys(groups)
+  .sort(function (a, b) {
+    var depth = pathDepth(a) - pathDepth(b);
+    return depth || a.localeCompare(b);
+  })
+  .map(function (p) {
     return groups[p];
   });
 
   return files;
+}
+
+function pathDepth(p) {
+  return p.split(path.sep).length;
 }
