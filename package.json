@@ -1,7 +1,7 @@
 {
-  "name": "documentation-theme-default",
-  "version": "2.2.0",
-  "description": "the default theme for documentation",
+  "name": "documentation-theme-node",
+  "version": "1.0.0",
+  "description": "documentationjs theme for node modules",
   "scripts": {
     "lint": "eslint *.js **/*.js",
     "test": "npm run lint && handlebars index.hbs section.hbs > /dev/null"
