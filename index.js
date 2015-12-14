@@ -164,9 +164,26 @@ module.exports = function (comments, options, callback) {
       callback(null, files.concat(new File({
         path: 'index.html',
         contents: new Buffer(pageTemplate({
+          files: groupByFile(comments),
           docs: comments,
           options: options
         }), 'utf8')
       })));
     }));
 };
+
+function groupByFile(comments) {
+  var groups = {};
+  comments.forEach(function (c) {
+    var path = c.context.path || c.context.file;
+    groups[path] = groups[path] || { path: path, docs: [] };
+    groups[path].docs.push(c);
+  });
+
+  var files = Object.keys(groups).map(function (p) {
+    return groups[p];
+  });
+  console.log(files);
+
+  return files;
+}
