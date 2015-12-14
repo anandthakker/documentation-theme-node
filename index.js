@@ -183,7 +183,6 @@ function groupByFile(comments) {
   var files = Object.keys(groups).map(function (p) {
     return groups[p];
   });
-  console.log(files);
 
   return files;
 }
